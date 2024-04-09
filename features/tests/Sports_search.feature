@@ -19,6 +19,15 @@ Feature: Search tests
      | tent          |   tent              |
      | trekking poles |  trekking%20poles  |
 
+    Scenario: User can add product to the cart
+      Given Open main page
+      When Close ad
+      And Search for snowboard
+      And Click Add to cart
+      And Search for tent
+      And Click Add to cart
+      Then Verify cart has 2 items
+
 
 
 
