@@ -7,6 +7,8 @@ X_BTN = (By.CSS_SELECTOR, '[aria-label="Close dialog 3"]')
 ACCNT_BTN = (By.ID, 'desktop-icon-link-account')
 PRE_LOVED = (By.ID, 'secondary-nav-link-1')
 LOGIN = (By.CSS_SELECTOR, 'h1')
+SEC_NAV = (By.ID, 'secondary-nav')
+SEC_NAV_LINKS = (By.CSS_SELECTOR, '#secondary-nav a')
 
 @given('Open main page')
 def open_main(context):
@@ -33,4 +35,14 @@ def verify_login_from(context):
     actual = context.driver.find_element(*LOGIN).text
     assert expected == actual, f'Expected {expected}, but actual is {actual}'
 
+@when('Verify secondary nav is present')
+def verify_header(context):
+    context.driver.find_element(*SEC_NAV)
+
+@then('Verify secondary nav has {number} links')
+def verify_header_links(context, number):
+    number = int(number)
+    links = context.driver.find_elements(*SEC_NAV_LINKS)
+    print(links)
+    assert len(links) == number, f'Expected {number} links, but got {len(links)}'
 

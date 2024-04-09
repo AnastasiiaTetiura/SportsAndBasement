@@ -1,6 +1,14 @@
-# Created by anastasiiatetiura at 4/6/24
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Main Page tests
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: User can see Login form
+    Given Open main page
+    When Close ad
+    And Click Pre-loved department
+    When Click account button
+    Then Verify Login form is present
+
+    Scenario: Secondary nav has correct amount of links
+      Given Open main page
+      When Close ad
+      And Verify secondary nav is present
+      Then Verify secondary nav has 7 links
