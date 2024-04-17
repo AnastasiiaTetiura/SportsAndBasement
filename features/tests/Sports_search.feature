@@ -29,6 +29,14 @@ Feature: Search tests
       Then Verify cart has 2 items
 
 
+    Scenario: Verify that User cans see product name and image
+      Given Open main page
+      When Close ad
+      When Search for scott bike
+      Then Verify that every product has name and image
+
+
+
 
 
 

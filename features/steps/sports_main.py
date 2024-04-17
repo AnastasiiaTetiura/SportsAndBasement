@@ -3,46 +3,35 @@ from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 from time import sleep
 
-X_BTN = (By.CSS_SELECTOR, '[aria-label="Close dialog 3"]')
-ACCNT_BTN = (By.ID, 'desktop-icon-link-account')
-PRE_LOVED = (By.ID, 'secondary-nav-link-1')
-LOGIN = (By.CSS_SELECTOR, 'h1')
-SEC_NAV = (By.ID, 'secondary-nav')
-SEC_NAV_LINKS = (By.CSS_SELECTOR, '#secondary-nav a')
 
 @given('Open main page')
 def open_main(context):
-    context.driver.get('https://shop.sportsbasement.com/')
+    context.app.main_page.open_main()
 
 @when('Close ad')
 def click_close_add(context):
-    context.driver.wait.until(
-        EC.visibility_of_element_located(X_BTN)
-    )
-    context.driver.find_element(*X_BTN).click()
+    context.app.main_page.close_add()
 
 @when('Click Pre-loved department')
-def click_preloved(context):
-    context.driver.find_element(*PRE_LOVED).click()
+def open_preloved(context):
+    context.app.main_page.open_preloved()
 
 @when('Click account button')
-def click_accnt_btn(context):
-    context.driver.find_element(*ACCNT_BTN).click()
+def open_account(context):
+    context.app.main_page.open_account()
 
 @then('Verify Login form is present')
 def verify_login_from(context):
-    expected = "SHOPPING LOGIN"
-    actual = context.driver.find_element(*LOGIN).text
-    assert expected == actual, f'Expected {expected}, but actual is {actual}'
+    context.app.login_page.verify_login_form()
 
-@when('Verify secondary nav is present')
-def verify_header(context):
-    context.driver.find_element(*SEC_NAV)
 
-@then('Verify secondary nav has {number} links')
+@when('Verify header is present')
+def verify_header_nav(context):
+    context.app.main_page.verify_header_nav()
+
+
+@then('Verify header has {number} links')
 def verify_header_links(context, number):
-    number = int(number)
-    links = context.driver.find_elements(*SEC_NAV_LINKS)
-    print(links)
-    assert len(links) == number, f'Expected {number} links, but got {len(links)}'
+    context.app.main_page.verify_header_links(number)
+
 
