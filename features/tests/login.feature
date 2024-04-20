@@ -8,7 +8,7 @@ Feature: Login tests
         When Click account button
         Then Verify Login form is present
 
-        #WILL FAIL (CAPCHA)
+        #WILL FAIL (CAPTCHA)
     Scenario: User can register
         Given Open main page
         When Close ad

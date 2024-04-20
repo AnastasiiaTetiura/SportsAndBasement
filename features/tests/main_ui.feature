@@ -7,8 +7,8 @@ Feature: Main Page tests
     When Click account button
     Then Verify Login form is present
 
-    Scenario: Secondary nav has correct amount of links
+    Scenario: Header has correct amount of links
       Given Open main page
       When Close ad
-      And Verify secondary nav is present
-      Then Verify secondary nav has 7 links
+      And Verify header is present
+      Then Verify header has 7 links
